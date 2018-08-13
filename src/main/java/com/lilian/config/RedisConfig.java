@@ -1,4 +1,4 @@
-package com.lilian.base;
+package com.lilian.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

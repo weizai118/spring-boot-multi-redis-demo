@@ -1,20 +1,4 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver #mysql连接配置
-    url: jdbc:mysql://mysql.lilian.com:3306/test?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: admin
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-  data:
-    mongodb:
-      host: mongo.lilian.com  #mongoDB 连接配置
-      port: 27030
-      database: xingli_hchdb
-      username: xingli
-      password: xingli
   redis:
     database: 6   # Redis数据库索引（默认为0）
     host: redis.lilian.com  # Redis服务器地址

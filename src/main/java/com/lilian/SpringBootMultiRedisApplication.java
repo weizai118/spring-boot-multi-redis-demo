@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Author 孙龙
  */
 @SpringBootApplication
-public class SpringBootDataPackingApplication {
+public class SpringBootMultiRedisApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootDataPackingApplication.class, args);
+        SpringApplication.run(SpringBootMultiRedisApplication.class, args);
     }
 
 }

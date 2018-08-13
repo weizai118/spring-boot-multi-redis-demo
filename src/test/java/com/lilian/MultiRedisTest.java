@@ -1,6 +1,6 @@
-package com.lilian.service;
+package com.lilian;
 
-import com.lilian.entity.mysql.Employee;
+import com.lilian.entity.Person;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +8,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.sql.Timestamp;
 
 /**
  * spring-boot-data-packing
@@ -36,8 +35,8 @@ public class MultiRedisTest {
 
     @Test
     public void objectRedisTest() {
-        redisTemplate.opsForValue().set("person1", new Employee("李飞", 20, "临汾", "lf@lilian.com", new Timestamp(System.currentTimeMillis() - 5000), "1324567891", 1L));
-        redisTemplate1.opsForValue().set("person2", new Employee("李大壮", 35, "西安", "ldz@lilian.com", new Timestamp(System.currentTimeMillis() - 5000), "1324567891", 1L));
+        redisTemplate.opsForValue().set("person", new Person("李飞", 20, "临汾", "lf@lilian.com", "1324567891"));
+        redisTemplate1.opsForValue().set("person", new Person("李大壮", 35, "西安", "ldz@lilian.com", "1324567891"));
     }
 
 }
