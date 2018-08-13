@@ -8,7 +8,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
- * llld-parent
+ * llld-parent 配置默认Redis操作实例 到Spring中
  *
  * @Author 孙龙
  * @Date 2018/8/2
@@ -33,11 +33,21 @@ public class DefaultRedisConfig extends RedisConfig {
     @Value("${spring.redis.timeout}")
     private int timeout;
 
+    /**
+     * 配置redis连接工厂
+     *
+     * @return
+     */
     @Bean
     public RedisConnectionFactory defaultRedisConnectionFactory() {
         return createJedisConnectionFactory(dbIndex, host, port, password, timeout);
     }
 
+    /**
+     * 配置redisTemplate 注入方式使用@Resource(name="") 方式注入
+     *
+     * @return
+     */
     @Bean(name = "defaultRedisTemplate")
     public RedisTemplate defaultRedisTemplate() {
         RedisTemplate template = new RedisTemplate();

@@ -19,7 +19,7 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.lang.reflect.Method;
 
 /**
- * spring-boot-data-packing
+ * spring-boot-data-packing 设置Redis多实例的基类
  *
  * @Author 孙龙
  * @Date 2018/8/13
@@ -39,6 +39,11 @@ public class RedisConfig {
     @Value("${spring.redis.pool.min-idle}")
     private int redisPoolMinIdle;
 
+    /**
+     * 配置Key的生成方式
+     *
+     * @return
+     */
     @Bean
     public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
@@ -55,6 +60,16 @@ public class RedisConfig {
         };
     }
 
+    /**
+     * 创建redis连接工厂
+     *
+     * @param dbIndex
+     * @param host
+     * @param port
+     * @param password
+     * @param timeout
+     * @return
+     */
     public JedisConnectionFactory createJedisConnectionFactory(int dbIndex, String host, int port, String password, int timeout) {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
         jedisConnectionFactory.setDatabase(dbIndex);
@@ -67,14 +82,28 @@ public class RedisConfig {
 
     }
 
+    /**
+     * 配置CacheManager
+     *
+     * @param redisTemplate
+     * @return
+     */
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
-
         RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
-//        redisCacheManager.setDefaultExpiration(10);
         return redisCacheManager;
     }
 
+    /**
+     * 设置连接池属性
+     *
+     * @param maxIdle
+     * @param minIdle
+     * @param maxActive
+     * @param maxWait
+     * @param testOnBorrow
+     * @return
+     */
     public JedisPoolConfig setPoolConfig(int maxIdle, int minIdle, int maxActive, int maxWait, boolean testOnBorrow) {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxIdle(maxIdle);
@@ -85,6 +114,11 @@ public class RedisConfig {
         return poolConfig;
     }
 
+    /**
+     * 设置RedisTemplate的序列化方式
+     *
+     * @param redisTemplate
+     */
     public void setSerializer(RedisTemplate redisTemplate) {
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();

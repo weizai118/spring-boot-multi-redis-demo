@@ -2,9 +2,6 @@ package com.lilian.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.sql.Timestamp;
 
 /**
  * jpa-demo

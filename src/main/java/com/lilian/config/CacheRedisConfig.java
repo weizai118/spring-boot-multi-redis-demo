@@ -9,7 +9,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
- * llld-parent
+ * llld-parent 配置缓存Redis操作实例 到Spring中
  *
  * @Author 孙龙
  * @Date 2018/8/2
@@ -34,13 +34,22 @@ public class CacheRedisConfig extends RedisConfig {
     @Value("${spring.redis2.timeout}")
     private int timeout;
 
+    /**
+     * 配置redis连接工厂
+     *
+     * @return
+     */
     @Primary
     @Bean
     public RedisConnectionFactory cacheRedisConnectionFactory() {
         return createJedisConnectionFactory(dbIndex, host, port, password, timeout);
     }
 
-
+    /**
+     * 配置redisTemplate 注入方式使用@Resource(name="") 方式注入
+     *
+     * @return
+     */
     @Bean(name = "cacheRedisTemplate")
     public RedisTemplate cacheRedisTemplate() {
         RedisTemplate template = new RedisTemplate();
